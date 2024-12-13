@@ -17,13 +17,18 @@ public class AsterixController {
         this.characterService = characterService;
     }
 
-    @GetMapping("/characters/{id}")
+    @GetMapping("/character/{id}")
     public AsterixCharacter getCharacterById(@PathVariable String id) {
         return characterService.getCharacterById(id);
     }
 
     @GetMapping("/characters")
-    public List<AsterixCharacter> getCharacters() {
+    public List<AsterixCharacter> getAllCharacters() {
+        return characterService.getAllCharacters();
+    }
+
+    @GetMapping("/characters/{age}")
+    public List<AsterixCharacter> getAllCharactersWithAge(@PathVariable String age) {
         return characterService.getAllCharacters();
     }
 
@@ -32,9 +37,19 @@ public class AsterixController {
         return characterService.getCharactersByName(name);
     }
 
+    @GetMapping("/characters/age/{age}")
+    public List<AsterixCharacter> getCharactersByAge(@PathVariable int age) {
+        return characterService.getCharactersByAge(age);
+    }
+
     @GetMapping("/characters/profession/{profession}")
     public List<AsterixCharacter> getCharactersByProfession(@PathVariable String profession) {
         return characterService.getCharactersByProfession(profession);
+    }
+
+    @GetMapping("/characters/max-age/{maxAge}")
+    public List<AsterixCharacter> getCharactersByMaxAge(@PathVariable int maxAge) {
+        return characterService.getCharactersByMaxAge(maxAge);
     }
 
     @PostMapping("/characters")
@@ -42,21 +57,13 @@ public class AsterixController {
         return characterService.addCharacter(asterixCharacter);
     }
 
-    @PutMapping("/characters")
-    public AsterixCharacter updateCharacter(@RequestBody AsterixCharacter asterixCharacter) {
-        return characterService.updateCharacter(asterixCharacter);
+    @PutMapping("/characters/{id}")
+    public AsterixCharacter updateCharacter(@PathVariable String id, @RequestBody AsterixCharacter asterixCharacter) {
+        return characterService.updateCharacter(id, asterixCharacter);
     }
-
 
     @DeleteMapping("/characters/{id}")
     public void deleteCharacter(@PathVariable String id) {
         characterService.deleteCharacter(id);
     }
-
-
-
-
-
-
-
 }
