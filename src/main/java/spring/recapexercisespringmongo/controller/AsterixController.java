@@ -27,11 +27,6 @@ public class AsterixController {
         return characterService.getAllCharacters();
     }
 
-    @GetMapping("/characters/{age}")
-    public List<AsterixCharacter> getAllCharactersWithAge(@PathVariable String age) {
-        return characterService.getAllCharacters();
-    }
-
     @GetMapping("/characters/name/{name}")
     public List<AsterixCharacter> getCharactersByName(@PathVariable String name) {
         return characterService.getCharactersByName(name);
